@@ -67,7 +67,6 @@ def input_guess(guess):
             print "Lower!"
 
     
-    
 # create frame
 frame = simplegui.create_frame("Guess the Number", 200, 200)
 
@@ -83,3 +82,5 @@ new_game()
 
 
 # always remember to check your completed program against the grading rubric
+
+
