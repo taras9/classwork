@@ -12,12 +12,14 @@ num_guesses = 7
 # helper function to start and restart the game
 def new_game():
     global secret_number
-    global num_range
-    global num_guesses
     print "New game. Range is from 0 to " + str(num_range)
-    num_range = 100
-    num_guesses = 7
     secret_number = random.randrange(0, num_range)
+    global num_guesses
+    if num_range == 100:
+        num_guesses = 7  
+    elif num_range == 1000: 
+        num_guesses = 10
+
 
 
 
