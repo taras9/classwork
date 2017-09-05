@@ -6,8 +6,8 @@ import simplegui
 import random
 import math
 
-num_range = 100
-num_guesses = 7
+num_range = input_range()
+
 
 # helper function to start and restart the game
 def new_game():
@@ -61,10 +61,10 @@ def input_guess(guess):
         
         if player_guess < secret_number:
             print "Number of remaining guesses is " + str(num_guesses)
-            print "Higher!"
+            print "No, it's higher!"
         elif player_guess > secret_number:
             print "Number of remaining guesses is " + str(num_guesses)
-            print "Lower!"
+            print "No, it's lower!"
 
     
 # create frame
