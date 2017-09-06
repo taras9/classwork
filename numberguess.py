@@ -26,9 +26,10 @@ def new_game():
 # define event handlers for control panel
 def range100():
     # button that changes the range to [0,100) and starts a new game
-    global num_guesses
-
+     global num_guesses
     num_guesses = 7
+    global num_range
+    num_range = 100
     new_game()
     
 
