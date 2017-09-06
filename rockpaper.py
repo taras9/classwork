@@ -80,7 +80,7 @@ def rpsls(player_choice):
     print "Computer chooses " + str(comp_choice)
 
     # compute difference of comp_number and player_number modulo five
-    difference = abs((comp_number - player_number) % 5)
+    difference = (comp_number - player_number) % 5
     
 
     
