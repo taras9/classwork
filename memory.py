@@ -18,6 +18,8 @@ def new_game():
     random.shuffle(cards)  
     turns = 0
     print cards
+    exposed = [False, False, False, False, False, False, False, False, False, 
+           False, False, False, False, False, False, False]
     
 
      
