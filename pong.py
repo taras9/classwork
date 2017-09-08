@@ -13,8 +13,6 @@ HALF_PAD_WIDTH = PAD_WIDTH / 2
 HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
-score1 = 0
-score2 = 0
 
 
 
@@ -98,6 +96,8 @@ def draw(canvas):
    
     
     # update ball
+    ball_pos[0] += ball_vel[0]
+    ball_pos[1] += ball_vel[1]
             
     # draw ball
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
