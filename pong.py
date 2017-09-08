@@ -35,6 +35,8 @@ def spawn_ball(direction):
 def new_game():
     global paddle1_pos, paddle2_pos, paddle1_vel, paddle2_vel  # these are numbers
     global score1, score2  # these are ints
+    score1 = 0
+    score2 = 0
     paddle1_pos = [0, 0]
     paddle2_pos = [WIDTH - HALF_PAD_WIDTH, 0]
     paddle2_vel = [0, 0]
@@ -42,10 +44,7 @@ def new_game():
     spawn_ball(RIGHT)
 
 def reset():
-    global score1, score2
-    score1 = 0
-    score2 = 0
-    spawn_ball(RIGHT)
+   new_game()
 
 
 def draw(canvas):
@@ -115,19 +114,8 @@ def draw(canvas):
         paddle2_pos[1] = HEIGHT - PAD_HEIGHT
     
  # draw paddles
-#    canvas.draw_polygon([[0, paddle1_pos], [PAD_WIDTH, paddle1_pos], 
-#                         [PAD_WIDTH, PAD_HEIGHT + paddle1_pos], [0, PAD_HEIGHT + paddle1_pos]], 2, "Aqua", "Aqua")
-#    canvas.draw_polygon([[WIDTH - PAD_WIDTH, paddle2_pos], 
-#                         [WIDTH - PAD_WIDTH, paddle2_pos + PAD_HEIGHT], 
-#                         [WIDTH, paddle2_pos + PAD_HEIGHT], [WIDTH, (paddle2_pos)]], 2, "Aqua", "Aqua")
-#    
-
-#    canvas.draw_polygon([[paddle1_pos[0], paddle1_pos[1]] , [PAD_WIDTH, paddle1_pos[1]], 
-#                         [PAD_WIDTH, PAD_HEIGHT + paddle1_pos[1]], [0, PAD_HEIGHT + paddle1_pos[1]]], 2, "Aqua", "Aqua")
-#    canvas.draw_polygon([[WIDTH - PAD_WIDTH, paddle2_pos[1]], 
-#                         [WIDTH - PAD_WIDTH, paddle2_pos[1] + PAD_HEIGHT], 
-#                         [WIDTH, paddle2_pos[1] + PAD_HEIGHT], [WIDTH, (paddle2_pos[1])]], 2, "Aqua", "Aqua")
-
+    canvas.draw_line([paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1]], [paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1] + PAD_HEIGHT], 8, "Aqua")
+    canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide    
     
