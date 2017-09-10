@@ -119,11 +119,11 @@ def draw(canvas):
 
     # determine whether paddle and ball collide   
     
-    if (ball_pos[0] >= paddle1_pos):
-        if (ball_pos[0] <= paddle1_pos + PAD_HEIGHT): 
+    if (ball_pos[1] >= paddle2_pos):
+        if (ball_pos[1] <= paddle2_pos + PAD_HEIGHT): 
                 ball_vel[0] = -ball_vel[0]
-    if (ball_pos[0] >= paddle2_pos): 
-        if(ball_pos[0] <= paddle2_pos + PAD_HEIGHT):
+    if (ball_pos[1] >= paddle1_pos): 
+        if(ball_pos[1] <= paddle1_pos + PAD_HEIGHT):
                 ball_vel[0] = -ball_vel[0]		
     elif ball_pos[1]>WIDTH:
         score+=1
