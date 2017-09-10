@@ -14,7 +14,7 @@ HALF_PAD_WIDTH = PAD_WIDTH / 2
 HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
-
+PADDING = 15
 
 
 # initialize ball_pos and ball_vel for new bal in middle of table
@@ -119,7 +119,7 @@ def draw(canvas):
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide   
-    PADDING = 15
+    
     if (ball_pos[1] >= paddle2_pos - PADDING):
         
         if (ball_pos[1] <= paddle2_pos + PAD_HEIGHT+ PADDING): 
