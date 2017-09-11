@@ -97,7 +97,7 @@ def draw(canvas):
    
     
     # update ball
-    ball_pos[0] = ball_pos[0] +  ball_vel[0]
+    ball_pos[0] += ball_pos[0]
     ball_pos[1] += ball_vel[1]
             
     # draw ball
