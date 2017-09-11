@@ -1,4 +1,3 @@
-
 # Implementation of classic arcade game Pong
 
 import simplegui
@@ -52,11 +51,16 @@ def draw(canvas):
     paddle1_pos[1] += paddle1_vel[1]   
     paddle2_pos[1] += paddle2_vel[1]
         
-
+    ball_pos[0] += ball_vel[0]
+    ball_pos[1] += ball_vel[1]
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1]    
         
     
         
-    if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
+    elif ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
             score1 = score1 + 1
             print score1
@@ -80,13 +84,6 @@ def draw(canvas):
         else:
             ball_vel[0] = -ball_vel[0] * 1.1
             
-    ball_pos[0] += ball_vel[0]
-    ball_pos[1] += ball_vel[1]
-    if ball_pos[1] == 20:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 380:
-        ball_vel[1] = - ball_vel[1]    
- 
         
         
     # draw mid line and gutters
@@ -119,6 +116,7 @@ def draw(canvas):
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide   
+    
     
 
     
