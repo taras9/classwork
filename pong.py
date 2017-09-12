@@ -39,7 +39,7 @@ def new_game():
     paddle2_pos = [WIDTH - HALF_PAD_WIDTH, 0]
     paddle2_vel = [0, 0]
     paddle1_vel = [0, 0]
-    spawn_ball(RIGHT)
+    spawn_ball(LEFT)
 
 def reset():
    new_game()
