@@ -4,7 +4,9 @@ import simplegui
 
 
 # load card sprite - 936x384 - source: jfitz.com
-
+card_images = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/cards_jfitz.png")
+card_back = simplegui.load_image("http://storage.googleapis.com/codeskulptor-assets/card_jfitz_back.png") 
+CARD_SIZE = (72, 96)
 
 # initialize some useful global variables
 
