@@ -39,7 +39,7 @@ def new_game():
     paddle2_pos = [WIDTH - HALF_PAD_WIDTH, 0]
     paddle2_vel = [0, 0]
     paddle1_vel = [0, 0]
-    spawn_ball(LEFT)
+    spawn_ball(RIGHT)
 
 def reset():
    new_game()
@@ -116,9 +116,6 @@ def draw(canvas):
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide   
-    
-    
-
     
     # draw scores
     
