@@ -55,13 +55,6 @@ def reset():
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
     
-    paddle1_pos[1] += paddle1_vel[1]   
-    paddle2_pos[1] += paddle2_vel[1]
-        
-   
-        
-    
-        
     if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
             score1 = score1 + 1
@@ -85,7 +78,14 @@ def draw(canvas):
             spawn_ball(RIGHT)
         else:
             ball_vel[0] = -ball_vel[0] * 1.1
-            
+    
+    
+    
+    paddle1_pos[1] += paddle1_vel[1]   
+    paddle2_pos[1] += paddle2_vel[1]
+        
+   
+                
         
         
     # draw mid line and gutters
