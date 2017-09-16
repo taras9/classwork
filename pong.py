@@ -58,31 +58,28 @@ def draw(canvas):
     elif ball_pos[1] == 380:
         ball_vel[1] = - ball_vel[1]    
         
-    
+    elif ball_pos[0] + BALL_RADIUS >= (600 - PAD_WIDTH):  
+        if ball_pos[1] > paddle2_pos[1] + PAD_HEIGHT:
+            score2 = score2 + 1
+            spawn_ball(RIGHT)
+        elif ball_pos[1] < paddle2_pos[1]:
+            score2 = score2 + 1
+            spawn_ball(RIGHT)
+        else:
+            ball_vel[0] = -ball_vel[0] * 1.1
+        
         
     elif ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
             score1 = score1 + 1
-            print score1
             spawn_ball(LEFT)
         elif ball_pos[1] < paddle1_pos[1]:
             score1 = score1 + 1
-            print score1
             spawn_ball(LEFT)
         else:
             ball_vel[0] = -ball_vel[0] * 1.1
 
-    elif ball_pos[0] + BALL_RADIUS >= (600 - PAD_WIDTH):  
-        if ball_pos[1] > paddle2_pos[1] + PAD_HEIGHT:
-            score2 = score2 + 1
-            print score2
-            spawn_ball(RIGHT)
-        elif ball_pos[1] < paddle2_pos[1]:
-            score2 = score2 + 1
-            print score2
-            spawn_ball(RIGHT)
-        else:
-            ball_vel[0] = -ball_vel[0] * 1.1
+
             
         
         
