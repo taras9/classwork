@@ -27,6 +27,11 @@ def spawn_ball(direction):
         ball_vel = [horiz_vel, -vert_vel] 
     else:
         ball_vel = [-horiz_vel, -vert_vel]
+    
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1]     
  
 
 # define event handlers
@@ -99,6 +104,11 @@ def draw(canvas):
     # update ball
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
+    
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1] 
             
     # draw ball
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
