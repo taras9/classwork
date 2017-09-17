@@ -53,10 +53,7 @@ def reset():
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
    
-    if ball_pos[1] == 20:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 380:
-        ball_vel[1] = - ball_vel[1] 
+
 
     paddle1_pos[1] += paddle1_vel[1]   
     paddle2_pos[1] += paddle2_vel[1]   
