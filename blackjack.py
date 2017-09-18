@@ -63,32 +63,51 @@ class Hand:
     def add_card(self, card):
         self.hand.append(card)	# add a card object to a hand
 
-    
+    def get_value(self):
+        # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
+        # compute the value of the hand, see Blackjack video
+        self.hand_value = 0
+        for  c in self.cards:
+            self.hand_value += VALUES[rank]
+            if self.hand_value + 10 <= 21:
+                return self.hand_value + 10
+            else:
+                return self.hand_value
+   
+    def draw(self, canvas, pos):
+        # draw a hand on the canvas, use the draw method for cards
+        for card in self.hand:
+            card_loc = (card_size[0] * (0.5 + RANKS.index(self.rank)), card_size[1] * (0.5 + SUITS.index(self.suit)))
+            canvas.draw_image(card_images, card_loc, card_size, [pos[0] + card_size[0] / 2, pos[1] + card_size[1] / 2], card_size)
+            pos[0] = pos[0] + 50
+ 
         
 # define deck class 
+        
 class Deck:
     def __init__(self):
-        self.deck = [Card(suit, rank) for suit in SUITS for rank in RANKS]
-        
-    
-        
-    def __str__(self):
-        # return a string representing the deck
-        deck_string = ""
-        for card in self.deck:
-            card = str(card)
-            deck_string = deck_string + " " + card
-        return "Deck contains " + deck_string
-    
+        self.deck = [Card(suit, rank) for suit in SUITS for rank in RANKS]	# create a Deck object
+
+         
 
     def shuffle(self):
         # shuffle the deck 
-        pass    # use random.shuffle()
+        random.shuffle(self.deck)   # use random.shuffle()
 
     def deal_card(self):
-        pass	# deal a card object from the deck
+            # deal a card object from the deck
+        dealt_card = self.deck.pop(0)
+        return dealt_card
+    
+    def __str__(self):
+            # return a string representing the deck
+        deck_list = ""
+        for card in self.deck:
+            card = str(card)
+            deck_list = deck_list + " " + card
+        return "Deck contains " + deck_list
 
-print Deck() 
+
 
 #define event handlers for buttons
 def deal():
