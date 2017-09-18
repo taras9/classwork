@@ -28,10 +28,7 @@ def spawn_ball(direction):
     else:
         ball_vel = [-horiz_vel, -vert_vel]
     
-    if ball_pos[1] == 20:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 380:
-        ball_vel[1] = - ball_vel[1] 
+
  
 
 # define event handlers
@@ -45,6 +42,11 @@ def new_game():
     paddle2_vel = [0, 0]
     paddle1_vel = [0, 0]
     spawn_ball(RIGHT)
+    
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1] 
 
 def reset():
    new_game()
@@ -52,17 +54,16 @@ def reset():
 
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
-   
-
-
     paddle1_pos[1] += paddle1_vel[1]   
     paddle2_pos[1] += paddle2_vel[1]   
+    
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1] 
         
     ball_pos[0] += ball_vel[0]
-    ball_pos[1] += ball_vel[1]
-    
- 
-        
+    ball_pos[1] += ball_vel[1]      
         
     if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
