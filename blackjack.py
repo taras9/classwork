@@ -101,19 +101,38 @@ class Deck:
     
     def __str__(self):
             # return a string representing the deck
-        deck_list = ""
+        deck_string = ""
         for card in self.deck:
             card = str(card)
-            deck_list = deck_list + " " + card
-        return "Deck contains " + deck_list
+            deck_string = deck_string + " " + card
+        return "Deck contains " + deck_string
 
 
 
 #define event handlers for buttons
 def deal():
-    global outcome, in_play
+    global outcome, in_play, deck, player_hand, dealer_hand
+    deck = Deck()
 
-    # your code goes here
+    player_hand = Hand()
+    dealer_hand = Hand()
+    deck.shuffle()
+    
+    card_in_play = deck.deal_card()
+    print card_in_play
+    player_hand.add_card(card_in_play) 
+    card_in_play = deck.deal_card()
+    print card_in_play
+    player_hand.add_card(card_in_play)   
+    print player_hand
+    
+    card_in_play = deck.deal_card()
+    print card_in_play
+    dealer_hand.add_card(card_in_play) 
+    card_in_play = deck.deal_card()
+    print card_in_play
+    dealer_hand.add_card(card_in_play)
+    print  dealer_hand
     
     in_play = True
 
