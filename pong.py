@@ -27,8 +27,12 @@ def spawn_ball(direction):
         ball_vel = [horiz_vel, -vert_vel] 
     else:
         ball_vel = [-horiz_vel, -vert_vel]
+       
     
-
+    if ball_pos[1] <= BALL_RADIUS:
+        ball_vel[1] = - ball_vel[1]
+    if ball_pos[1] >= (HEIGHT - BALL_RADIUS):
+        ball_vel[1] = - ball_vel[1]
  
 
 # define event handlers
@@ -55,13 +59,7 @@ def draw(canvas):
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
     
-    
-    if ball_pos[1] == 20:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 380:
-        ball_vel[1] = - ball_vel[1] 
-        
-   
+  
         
     if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
@@ -98,9 +96,7 @@ def draw(canvas):
     
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
-    
-
-    
+       
 
             
     # draw ball
