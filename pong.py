@@ -29,9 +29,9 @@ def spawn_ball(direction):
         ball_vel = [-horiz_vel, -vert_vel]
        
     
-    if ball_pos[1] <= BALL_RADIUS:
+    if ball_pos[1] == BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
-    if ball_pos[1] >= (HEIGHT - BALL_RADIUS):
+    if ball_pos[1] == (HEIGHT - BALL_RADIUS):
         ball_vel[1] = - ball_vel[1]
  
 
