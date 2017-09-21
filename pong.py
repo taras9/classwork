@@ -56,7 +56,10 @@ def draw(canvas):
     ball_pos[1] += ball_vel[1]
     
     
-
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1] 
         
    
         
@@ -96,10 +99,7 @@ def draw(canvas):
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
     
-    if ball_pos[1] == 20:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 380:
-        ball_vel[1] = - ball_vel[1] 
+
     
 
             
@@ -117,7 +117,7 @@ def draw(canvas):
     if paddle2_pos[1] > HEIGHT - PAD_HEIGHT:
         paddle2_pos[1] = HEIGHT - PAD_HEIGHT
     
- # draw paddles
+    # draw paddles
     canvas.draw_line([paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1]], [paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1] + PAD_HEIGHT], 8, "Aqua")
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
