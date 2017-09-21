@@ -56,10 +56,7 @@ def draw(canvas):
     ball_pos[1] += ball_vel[1]
     
     
-    if ball_pos[1] == 100:
-        ball_vel[1] = - ball_vel[1] 
-    elif ball_pos[1] == 300:
-        ball_vel[1] = - ball_vel[1] 
+
         
    
         
@@ -98,6 +95,11 @@ def draw(canvas):
     
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
+    
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1] 
     
 
             
