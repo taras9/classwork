@@ -27,12 +27,6 @@ def spawn_ball(direction):
         ball_vel = [horiz_vel, -vert_vel] 
     else:
         ball_vel = [-horiz_vel, -vert_vel]
-       
-    
-    if ball_pos[1] == BALL_RADIUS:
-        ball_vel[1] = - ball_vel[1]
-    if ball_pos[1] == (HEIGHT - BALL_RADIUS):
-        ball_vel[1] = - ball_vel[1]
  
 
 # define event handlers
@@ -45,7 +39,7 @@ def new_game():
     paddle2_pos = [WIDTH - HALF_PAD_WIDTH, 0]
     paddle2_vel = [0, 0]
     paddle1_vel = [0, 0]
-    spawn_ball(RIGHT)
+    spawn_ball(LEFT)
 
 def reset():
    new_game()
@@ -53,37 +47,44 @@ def reset():
 
 def draw(canvas):
     global score1, score2, paddle1_pos, paddle2_pos, ball_pos, ball_vel
-    paddle1_pos[1] += paddle1_vel[1]   
-    paddle2_pos[1] += paddle2_vel[1]   
     
+    paddle1_pos[1] += paddle1_vel[1]   
+    paddle2_pos[1] += paddle2_vel[1]
+        
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
-    
-  
+    if ball_pos[1] == 20:
+        ball_vel[1] = - ball_vel[1] 
+    elif ball_pos[1] == 380:
+        ball_vel[1] = - ball_vel[1]    
         
-    if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
+    
+        
+    elif ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
             score1 = score1 + 1
+            print score1
             spawn_ball(LEFT)
         elif ball_pos[1] < paddle1_pos[1]:
             score1 = score1 + 1
+            print score1
             spawn_ball(LEFT)
         else:
-            ball_vel[0] = -ball_vel[0] * 1.1      
-        
+            ball_vel[0] = -ball_vel[0] * 1.1
+
     elif ball_pos[0] + BALL_RADIUS >= (600 - PAD_WIDTH):  
         if ball_pos[1] > paddle2_pos[1] + PAD_HEIGHT:
             score2 = score2 + 1
+            print score2
             spawn_ball(RIGHT)
         elif ball_pos[1] < paddle2_pos[1]:
             score2 = score2 + 1
+            print score2
             spawn_ball(RIGHT)
         else:
             ball_vel[0] = -ball_vel[0] * 1.1
             
-            
-
-             
+        
         
     # draw mid line and gutters
     canvas.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, "White")
@@ -93,11 +94,8 @@ def draw(canvas):
    
     
     # update ball
-    
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
-       
-
             
     # draw ball
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
@@ -113,31 +111,13 @@ def draw(canvas):
     if paddle2_pos[1] > HEIGHT - PAD_HEIGHT:
         paddle2_pos[1] = HEIGHT - PAD_HEIGHT
     
-    # draw paddles
+ # draw paddles
     canvas.draw_line([paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1]], [paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1] + PAD_HEIGHT], 8, "Aqua")
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide   
     
-    if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
-        if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
-            score1 = score1 + 1
-            spawn_ball(LEFT)
-        elif ball_pos[1] < paddle1_pos[1]:
-            score1 = score1 + 1
-            spawn_ball(LEFT)
-        else:
-            ball_vel[0] = -ball_vel[0] * 1.1      
-        
-    elif ball_pos[0] + BALL_RADIUS >= (600 - PAD_WIDTH):  
-        if ball_pos[1] > paddle2_pos[1] + PAD_HEIGHT:
-            score2 = score2 + 1
-            spawn_ball(RIGHT)
-        elif ball_pos[1] < paddle2_pos[1]:
-            score2 = score2 + 1
-            spawn_ball(RIGHT)
-        else:
-            ball_vel[0] = -ball_vel[0] * 1.1    
+    
 
     
     # draw scores
