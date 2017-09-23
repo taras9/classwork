@@ -66,14 +66,22 @@ class Hand:
     def get_value(self):
         # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
         # compute the value of the hand, see Blackjack video
-        self.hand_value = 0
-        for  c in self.cards:
-            self.hand_value += VALUES[rank]
-            if self.hand_value + 10 <= 21:
-                return self.hand_value + 10
+        hand_value = 0
+        aces = False
+        for card in self.hand:
+            card_rank = card.get_rank()
+            hand_value += VALUES.get(card_rank)
+            if card_rank == 'A':
+                aces = True       
+          
+        if aces == False:
+            return hand_value
+        if aces == True:
+            if hand_value + 10 <= 21:
+                return hand_value + 10
             else:
-                return self.hand_value
-   
+                return hand_value
+    
     def draw(self, canvas, pos):
         # draw a hand on the canvas, use the draw method for cards
         for card in self.hand:
@@ -124,7 +132,7 @@ def deal():
     card_in_play = deck.deal_card()
     print card_in_play
     player_hand.add_card(card_in_play)   
-    print player_hand
+    print "Player " + str(player_hand)
     
     card_in_play = deck.deal_card()
     print card_in_play
@@ -132,20 +140,39 @@ def deal():
     card_in_play = deck.deal_card()
     print card_in_play
     dealer_hand.add_card(card_in_play)
-    print  dealer_hand
+    print "Dealer " + str(dealer_hand)
     
     in_play = True
 
 def hit():
-    pass	# replace with your code below
- 
-    # if the hand is in play, hit the player
-   
+        # if the hand is in play, hit the player
+    global score
+    if player_hand.get_value() <= 21:
+        card_in_play = deck.deal_card()
+        print card_in_play
+        player_hand.add_card(card_in_play)
+        print "Player " + str(player_hand)
+        print "Player hand value is " + str(player_hand.get_value())
+    else:
+        print "You have busted"
+        print "Player hand value is " + str(player_hand.get_value())
+        in_play = False
+        score -= 1
+
+
     # if busted, assign a message to outcome, update in_play and score
        
 def stand():
-    pass	# replace with your code below
-   
+#    if player_hand.get_value() > 21:
+#        print "You have busted"
+#    else: 
+    while dealer_hand.get_value() >= 17:
+        card_in_play = deck.deal_card()
+        print card_in_play
+        dealer_hand.add_card(card_in_play)
+        print "Dealer " + str(dealer_hand)
+        print dealer_hand.get_value()
+
     # if hand is in play, repeatedly hit dealer until his hand has value 17 or more
 
     # assign a message to outcome, update in_play and score
