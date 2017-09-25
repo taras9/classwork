@@ -85,8 +85,9 @@ class Hand:
     def draw(self, canvas, pos):
         # draw a hand on the canvas, use the draw method for cards
         for card in self.hand:
-            card_loc = (card_size[0] * (0.5 + RANKS.index(self.rank)), card_size[1] * (0.5 + SUITS.index(self.suit)))
-            canvas.draw_image(card_images, card_loc, card_size, [pos[0] + card_size[0] / 2, pos[1] + card_size[1] / 2], card_size)
+            card_card.draw(canvas, pos)
+            #card_loc = (card_size[0] * (0.5 + RANKS.index(self.rank)), card_size[1] * (0.5 + SUITS.index(self.suit)))
+            #canvas.draw_image(card_images, card_loc, card_size, [pos[0] + card_size[0] / 2, pos[1] + card_size[1] / 2], card_size)
             pos[0] = pos[0] + 50
  
         
@@ -153,8 +154,9 @@ def hit():
         player_hand.add_card(card_in_play)
         print "Player " + str(player_hand)
         print "Player hand value is " + str(player_hand.get_value())
+        outcome = "Hit or stand?"
     else:
-        print "You have busted."
+        outcome = "You have busted. New deal?"
         print "Player hand value is " + str(player_hand.get_value())
         in_play = False
         score -= 1
@@ -163,10 +165,11 @@ def hit():
     # if busted, assign a message to outcome, update in_play and score
        
 def stand():
+    global score
     player_value = player_hand.get_value()
     print player_value    
     if player_value  > 21:       
-        print "You have busted."
+        outcome =  "You have busted.  New deal?"
     else: 
         dealer_value = dealer_hand.get_value()
         while dealer_value <= 17:
@@ -178,14 +181,14 @@ def stand():
             print "Dealer value is " + str(dealer_hand.get_value())
         if dealer_value > 21:
             score += 1
-            print "Dealer has busted. You win!"
+            outcome =  "Dealer has busted. You win!  New deal?"
         else:
             if player_value > dealer_value:
                 score += 1
-                print "You win!"                
+                outcome =  "You win!  New deal?"                
             if player_value <= dealer_value:
                 score -= 1
-                print "Dealer wins."
+                outcome =  "Dealer wins.  New deal?"
 
     # if hand is in play, repeatedly hit dealer until his hand has value 17 or more
 
@@ -195,8 +198,11 @@ def stand():
 def draw(canvas):
     # test to make sure that card.draw works, replace with your code below
     
-    card = Card("S", "A")
-    card.draw(canvas, [300, 300])
+    #card = Card("S", "A")
+    player_hand  = Hand()
+    player_hand.draw(canvas, [100, 300])
+    canvas.draw_text("It's Blackjack!", [210, 100], 36, "black")
+    canvas.draw_text(outcome, [150, 200], 25, "black")
 
 
 # initialization frame
@@ -207,6 +213,7 @@ frame.set_canvas_background("Green")
 frame.add_button("Deal", deal, 200)
 frame.add_button("Hit",  hit, 200)
 frame.add_button("Stand", stand, 200)
+
 frame.set_draw_handler(draw)
 
 
