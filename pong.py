@@ -130,15 +130,18 @@ def draw(canvas):
     
     paddle1_pos[1] += paddle1_vel[1]   
     paddle2_pos[1] += paddle2_vel[1]
-        
-    ball_pos[0] += ball_vel[0]
-    ball_pos[1] += ball_vel[1]
+    
     if ball_pos[1] == BALL_RADIUS:
         ball_vel[1] = - ball_vel[1]
     if ball_pos[1] == (HEIGHT - BALL_RADIUS):
-        ball_vel[1] = - ball_vel[1]      
+        ball_vel[1] = - ball_vel[1]       
+    ball_pos[0] += ball_vel[0]
+    ball_pos[1] += ball_vel[1]
+   
         
-  
+    
+        
+
             
         
         
@@ -167,12 +170,11 @@ def draw(canvas):
     if paddle2_pos[1] > HEIGHT - PAD_HEIGHT:
         paddle2_pos[1] = HEIGHT - PAD_HEIGHT
     
-    # draw paddles
+ # draw paddles
     canvas.draw_line([paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1]], [paddle1_pos[0] + HALF_PAD_WIDTH , paddle1_pos[1] + PAD_HEIGHT], 8, "Aqua")
     canvas.draw_line([paddle2_pos[0], paddle2_pos[1]], [paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT], 8, "Aqua")
 
     # determine whether paddle and ball collide   
-    
     
     if ball_pos[0] - BALL_RADIUS <= PAD_WIDTH:
         if ball_pos[1] > paddle1_pos[1] + PAD_HEIGHT:
@@ -193,6 +195,7 @@ def draw(canvas):
             spawn_ball(RIGHT)
         else:
             ball_vel[0] = -ball_vel[0] * 1.1
+
     
     # draw scores
     
@@ -236,4 +239,3 @@ frame.add_button("Reset", reset, 100)
 # start frame
 new_game()
 frame.start()
-
